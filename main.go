@@ -83,7 +83,7 @@ func GetResult() string {
 
 	for i, tipe := range tmpType {
 		index := strconv.Itoa(i + 1)
-		result = result + index + " " + tipe + "\n"
+		result = result + index + ". " + tipe + "\n"
 		for _, items := range inventory {
 			for _, item := range items.Item {
 				if tipe == item.Type {
