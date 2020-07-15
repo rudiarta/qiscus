@@ -16,7 +16,7 @@ type Inventory struct {
 	Item []ItemData
 }
 
-// Why this isn't constant because Go does not support struct constants (emphasis mine)
+// Why this isn't constant because Go does not support struct constants
 // https://stackoverflow.com/questions/43368604/constant-struct-in-go/43368686
 var inventory = []Inventory{
 	{
