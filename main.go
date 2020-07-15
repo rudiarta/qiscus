@@ -89,7 +89,10 @@ func GetResult() string {
 				if tipe == item.Type {
 					tmpCount++
 
-					var value string = ExtractValue(item, item.Type)
+					value, err := ExtractValue(item, item.Type)
+					if err != nil {
+						panic(err)
+					}
 
 					count := strconv.Itoa(tmpCount)
 					result = result + index + "." + count + " " + value + "\n"
@@ -109,20 +112,23 @@ func CategorizeType(items []ItemData, tmpType *[]string) {
 	}
 }
 
-func ExtractValue(item ItemData, val string) string {
+func ExtractValue(item ItemData, val string) (string, error) {
 	if val == "Book" {
 		val = item.Title
+		return val, nil
 	}
 
 	if val == "Car" {
 		val = item.Brand
+		return val, nil
 	}
 
 	if val == "Smartphone" {
 		val = item.Brand + " (" + item.OperatingSystem + ")"
+		return val, nil
 	}
 
-	return val
+	return val, fmt.Errorf("Type not detected")
 }
 
 func Find(slice []string, val string) bool {
